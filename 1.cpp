@@ -25,9 +25,9 @@ public:
 
 class Face {
 public:
-    int vertexIndices[3];
-    int textureIndices[3];
-    int normalIndices[3];
+    int vertexIndices[4];
+    int textureIndices[4];
+    int normalIndices[4];
 };
 
 std::array<Vertex, maxVertices> vertices;
