@@ -53,16 +53,19 @@ int main() {
         if (prefix == "v") {
             if (vertexCount < maxVertices) {
                 objFile >> vertices[vertexCount].x >> vertices[vertexCount].y >> vertices[vertexCount].z;
+                std::cout << "Vertex " << vertexCount << ": x=" << vertices[vertexCount].x << " y=" << vertices[vertexCount].y << " z=" << vertices[vertexCount].z << std::endl;
                 vertexCount++;
             }
         } else if (prefix == "vt") {
             if (texCoordCount < maxTexCoords) {
                 objFile >> texCoords[texCoordCount].u >> texCoords[texCoordCount].v;
+                std::cout << "TextureCoord " << texCoordCount << ": u=" << texCoords[texCoordCount].u << " v=" << texCoords[texCoordCount].v << std::endl;
                 texCoordCount++;
             }
         } else if (prefix == "vn") {
             if (normalCount < maxNormals) {
                 objFile >> normals[normalCount].nx >> normals[normalCount].ny >> normals[normalCount].nz;
+                std::cout << "Normal " << normalCount << ": nx=" << normals[normalCount].nx << " ny=" << normals[normalCount].ny << " nz=" << normals[normalCount].nz << std::endl;
                 normalCount++;
             }
         } else if (prefix == "f") {
@@ -70,17 +73,20 @@ int main() {
                 for (int i = 0; i < 3; i++) {
                     objFile >> faces[faceCount].vertexIndices[i] >> faces[faceCount].textureIndices[i] >> faces[faceCount].normalIndices[i];
                 }
+                std::cout << "Face " << faceCount << ": ";
+                for (int i = 0; i < 3; i++) {
+                    std::cout << "Vertex: " << faces[faceCount].vertexIndices[i] << " Texture: " << faces[faceCount].textureIndices[i] << " Normal: " << faces[faceCount].normalIndices[i] << " ";
+                }
+                std::cout << std::endl;
                 faceCount++;
             }
         }
-        // Прочитать остаток строки, чтобы перейти к следующей строке
+
         std::getline(objFile, line);
     }
 
-    // Теперь у вас есть данные о вершинах (v), текстурных координатах (vt), нормалях (vn)
-    // и полигонах (f) в соответствующих массивах.
 
-    // Используйте эти данные для рендеринга или другой обработки.
 
     return 0;
 }
+
